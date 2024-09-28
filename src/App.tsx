@@ -8,12 +8,12 @@ export default function App (){
   const SelectedRender = ()=>{
     return <section>
       {/* <img/> */}
-      <h1>{}</h1>
+      <h1>{selected}</h1>
     </section>
   }
 
   return <main>
     <SelectedRender/>
-    <Gallery/>
+    <Gallery setSelected={setSelected}/>
   </main>
 }

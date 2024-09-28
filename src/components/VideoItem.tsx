@@ -1,14 +1,15 @@
 import { Video } from "../vite-env"
 
 type Props = {
+    setSelected: Function
     data: Video
 }
 
-export default function VideoItem ({data}:Props){
+export default function VideoItem ({data, setSelected}:Props){
     return <div
         className="row-item"
         onClick={()=>{
-            console.log(data._id)
+            setSelected(data._id)
         }}
     >
         {/* <img/> */}
