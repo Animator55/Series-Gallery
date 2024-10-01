@@ -1,0 +1,22 @@
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.row {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: auto;
+    gap: .5rem;
+}
+
+.row-item .img {
+    padding: 1rem;
+    border-radius: 7px;
+    background-color: black;
+    width: 7rem;
+    height: 12rem;
+}
+.row-item p {
+    font-size: 1rem;
+    text-overflow: ellipsis;
+}

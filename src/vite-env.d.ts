@@ -18,6 +18,7 @@ export type Video = {
     type: "film" | "serie"
     title:string
     description:string
+    tags?: string[]
     date:string
     rating:number
     chapters:Item[]

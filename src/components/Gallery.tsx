@@ -1,17 +1,17 @@
-import { VideoList } from "../vite-env";
+import React from "react";
+import { series } from "../default/series";
 import VideoItem from "./VideoItem";
 
 type Props = {
     setSelected:Function
 }
 
-const data: VideoList[] = [
-
-]
 
 export default function Gallery ({setSelected}:Props){
-    return <section className="gallery">
-        {data.map(list=>{
+    const ref = React.useRef<HTMLDivElement | null>(null)
+
+    return <section className="gallery" ref={ref}>
+        {series.map(list=>{
             return <ul
                 key={Math.random()}
                 className="row"
