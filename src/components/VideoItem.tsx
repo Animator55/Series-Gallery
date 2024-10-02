@@ -8,12 +8,13 @@ type Props = {
 export default function VideoItem ({data, setSelected}:Props){
     return <div
         className="row-item"
-        onMouseEnter={()=>{
+        onClick={()=>{
             setSelected(data._id)
         }}
+        id={"row-item:"+data._id}
     >
         <div className="img"></div>
         {/* <img/> */}
-        <p>{data.title}</p>
+        <p>{data._id}</p>
     </div>
 }

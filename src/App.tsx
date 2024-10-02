@@ -1,7 +1,7 @@
 
 import React from 'react'
 import './assets/App.css'
-import Gallery from './components/Gallery'
+import Gallery, { InfiniteScrollCarousel } from './components/Gallery'
 export default function App (){
   const [selected, setSelected] = React.useState<string | undefined>(undefined)
  
@@ -14,6 +14,8 @@ export default function App (){
 
   return <main>
     <SelectedRender/>
-    <Gallery setSelected={setSelected}/>
+    {/* <Gallery /> */}
+
+    <InfiniteScrollCarousel/>
   </main>
 }
