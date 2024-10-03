@@ -1,11 +1,12 @@
 import { Video } from "../vite-env"
 
 type Props = {
+    selected: boolean
     setSelected: Function
     data: Video
 }
 
-export default function VideoItem ({data, setSelected}:Props){
+export default function VideoItem ({selected, data, setSelected}:Props){
     return <div
         className="row-item"
         onClick={()=>{
@@ -13,7 +14,9 @@ export default function VideoItem ({data, setSelected}:Props){
         }}
         id={"row-item:"+data._id}
     >
-        <div className="img"></div>
+        <div
+            style={selected ? {backgroundColor: "red"}:{}}
+         className="img"></div>
         {/* <img/> */}
         <p>{data._id}</p>
     </div>
