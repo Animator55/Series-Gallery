@@ -1,46 +1,23 @@
 
 import { useState, useRef, useEffect } from "react";
-import { series } from "../default/series";
 import VideoItem from "./VideoItem";
-import { Video } from "../vite-env";
+import { Video, VideoList } from "../vite-env";
+import { mediaList } from "../default/mediaList";
 
 export default function Gallery() {
-    // const [selected, setSelected] = React.useState("")
-
-    // React.useEffect(() => {
-    //     if (selected === "") return
-    //     let selDiv = document.getElementById("row-item:" + selected) as HTMLDivElement
-    //     let selDivPrev = document.getElementById("row-item:" + prev) as HTMLDivElement
-    //     if (!selDiv) return
-    //     let ul = selDiv.parentElement as HTMLUListElement
-    //     if (!ul) return
-    //     if (selDivPrev) ul.scrollTo({ left: selDivPrev.offsetLeft - 50 })
-    //     ul.scrollTo({ left: selDiv.offsetLeft - 50, behavior: "smooth" })
-    // }, [selected])
-
-    // const setSelectedHandler = (val: string) => {
-    //     prev = selected
-    //     setSelected(val)
-    // }
-
-    // const generateInfiniteList = (list: Video[]) => {
-    //     let selectedIndex = -1
-    //     for (let i = 0; i < list.length; i++) {
-    //         if (list[i]._id === selected) {
-    //             selectedIndex = i
-    //             break
-    //         }
-    //     }
-    //     if (selectedIndex === -1) return list
-    //     let part1 = list.slice(selectedIndex - 5, selectedIndex)
-    //     let part2 = list.slice(selectedIndex + 1)
-    //     let newArray = [...part1, ...part2]
-    //     console.log(newArray)
-    //     return newArray
-    // }
-
+    const blockedThemes: string[] = []
+    const themes = ["Acción", "Romance", "Fantasía", "Ciencia Ficción", "Crimen"]
+    let GalleryRows = themes.map(theme=>{
+        if(blockedThemes.includes(theme))return
+        let media = mediaList.filter(el=>{if(el.tags.includes(theme))return el})
+        let result: VideoList = {
+            _id: `${theme}`,title: theme, list: media
+        }
+        return result
+    })
     return <section className="gallery">
-        {series.map(list => {
+        {GalleryRows && GalleryRows.length !== 0 && GalleryRows.map(list => {
+            if(!list)return
             return <section key={Math.random()}>
                 <label>{list.title}</label>
                 <InfiniteScrollCarousel list={list.list}/>
@@ -61,9 +38,9 @@ export const InfiniteScrollCarousel = ({list}: CarrouselProps) => {
     const updateVisibleItems = (index: number) => {
         const totalItems = items.length;
         const newVisibleItems = [
-            ...items.slice((index - 9 + totalItems) % totalItems, totalItems),
+            ...items.slice((index - (totalItems/2) + totalItems) % totalItems, totalItems),
             ...items,
-            ...items.slice(0, (index + 9) % totalItems),
+            ...items.slice(0, (index + (totalItems/2)) % totalItems),
         ];
         setVisibleItems(newVisibleItems);
     };
@@ -90,7 +67,7 @@ export const InfiniteScrollCarousel = ({list}: CarrouselProps) => {
 
     useEffect(() => {
         updateVisibleItems(selectedItem); 
-        scrollToItem(5, false);
+        scrollToItem(list.length/3, false);
     }, [selectedItem]);
 
     return (

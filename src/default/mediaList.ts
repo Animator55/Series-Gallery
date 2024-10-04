@@ -1,4 +1,6 @@
-export const mediaList = [
+import { Video } from "../vite-env";
+
+export const mediaList: Video[] = [
     {
         _id: "1",
         image: "https://example.com/image1.jpg",
