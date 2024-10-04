@@ -45,17 +45,18 @@ export default function Gallery() {
         {series.map(list => {
             return <section key={Math.random()}>
                 <label>{list.title}</label>
-                <InfiniteScrollCarousel list={list.list}/>
+                <InfiniteScrollCarousel _id={list._id} list={list.list}/>
             </section>
         })}
     </section>
 }
 
 type CarrouselProps = {
+    _id: string
     list: Video[]
 }
 
-export const InfiniteScrollCarousel = ({list}: CarrouselProps) => {
+export const InfiniteScrollCarousel = ({_id,list}: CarrouselProps) => {
     const items = [...list]
     const [selectedItem, setSelectedItem] = useState(0);
     const [visibleItems, setVisibleItems] = useState(items);
@@ -77,7 +78,7 @@ export const InfiniteScrollCarousel = ({list}: CarrouselProps) => {
     };
 
     const scrollToItem = (index: number) => {
-        const carousel: HTMLDivElement = carouselRef.current! as HTMLDivElement
+        let carousel = document.getElementById(_id)
         if (!carousel) return
         const selectedElement = carousel.children[index] as HTMLDivElement;
         if (!selectedElement) return
@@ -97,6 +98,7 @@ export const InfiniteScrollCarousel = ({list}: CarrouselProps) => {
 
     return (
         <div
+            id={_id}
             ref={carouselRef}
             className="row"
         >

@@ -8,6 +8,7 @@ export type Item = {
 }
 
 export type VideoList = {
+    _id: string,
     title: string
     list: Video[]
 }
