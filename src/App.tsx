@@ -3,6 +3,7 @@ import React from 'react'
 import './assets/App.css'
 import Gallery from './components/Gallery'
 export default function App (){
+  
   const [selected, setSelected] = React.useState<string | undefined>(undefined)
  
   const SelectedRender = ()=>{

@@ -312,5 +312,5 @@ export const series: VideoList[] = [
                 chapters: [],
             }
         ]
-    }
+    },
 ]

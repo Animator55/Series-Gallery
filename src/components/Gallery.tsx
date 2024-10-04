@@ -1,11 +1,9 @@
 
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { series } from "../default/series";
 import VideoItem from "./VideoItem";
 import { Video } from "../vite-env";
 
-
-let prev = ""
 export default function Gallery() {
     // const [selected, setSelected] = React.useState("")
 
@@ -71,27 +69,28 @@ export const InfiniteScrollCarousel = ({list}: CarrouselProps) => {
     };
 
     const handleSelectItem = (index: number) => {
-        scrollToItem(index);
+        scrollToItem(5 - (selectedItem - index), true);
         setTimeout(()=>{
             setSelectedItem(index);
             updateVisibleItems(index);
         }, 300)
     };
 
-    const scrollToItem = (index: number) => {
+    const scrollToItem = (index: number, smooth: boolean) => {
         const carousel: HTMLDivElement = carouselRef.current! as HTMLDivElement
         if (!carousel) return
-        const selectedElement = carousel.children[index+1] as HTMLDivElement;
+        const selectedElement = carousel.children[index] as HTMLDivElement;
         if (!selectedElement) return
         const offsetLeft = selectedElement.offsetLeft;
         carousel.scrollTo({
             left: offsetLeft -30,
-            behavior: "smooth",
+            behavior: smooth ? "smooth" : "instant",
         });
     };
 
     useEffect(() => {
         updateVisibleItems(selectedItem); 
+        scrollToItem(5, false);
     }, [selectedItem]);
 
     return (
