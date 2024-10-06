@@ -1,10 +1,12 @@
 
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import VideoItem from "./VideoItem";
 import { Video, VideoList } from "../vite-env";
 import { mediaList } from "../default/mediaList";
 
-export default function Gallery() {
+export default function Gallery() { 
+    const [selectedRow, setSelectedRow] = React.useState(0)
+    
     const blockedThemes: string[] = []
     const themes = ["Acción", "Romance", "Fantasía", "Ciencia Ficción", "Crimen"]
     let GalleryRows = themes.map(theme=>{
@@ -16,6 +18,7 @@ export default function Gallery() {
         return result
     })
     return <section className="gallery">
+        
         {GalleryRows && GalleryRows.length !== 0 && GalleryRows.map(list => {
             if(!list)return
             return <section key={Math.random()}>
