@@ -7,7 +7,7 @@ export default function App (){
   const [selected, setSelected] = React.useState<string | undefined>(undefined)
  
   const SelectedRender = ()=>{
-    return <section>
+    return <section className='selected'>
       {/* <img/> */}
       <h1>{selected}</h1>
     </section>

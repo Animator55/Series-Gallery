@@ -1,5 +1,17 @@
+body {
+    margin: 0;
+}
 *::-webkit-scrollbar {
     display: none;
+}
+
+.selected {
+    min-height: 60dvh;
+}
+
+
+.gallery {
+    max-height: 40dvh;
 }
 
 .row {
