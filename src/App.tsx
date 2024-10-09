@@ -13,9 +13,15 @@ export default function App (){
     </section>
   }
 
-  return <main>
-    <SelectedRender/>
+  const appendNewList = (div: HTMLDivElement)=>{
+    if(!div) return
+    let newList = `<div>a</div>`
+    div.append(newList)
+  }
 
-    <Gallery/>
+  return <main>
+    {selected ? <SelectedRender/>:
+    <Gallery  setSelected={setSelected}/>
+    }
   </main>
 }

@@ -4,16 +4,6 @@ body {
 *::-webkit-scrollbar {
     display: none;
 }
-
-.selected {
-    min-height: 60dvh;
-}
-
-
-.gallery {
-    max-height: 40dvh;
-}
-
 .row {
     display: flex;
     overflow-y: hidden;

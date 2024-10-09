@@ -4,7 +4,7 @@ import VideoItem from "./VideoItem";
 import { Video, VideoList } from "../vite-env";
 import { mediaList } from "../default/mediaList";
 
-export default function Gallery() { 
+export default function Gallery({setSelected}:{setSelected: Function}) { 
     const [selectedRow, setSelectedRow] = React.useState(0)
     
     const blockedThemes: string[] = []
